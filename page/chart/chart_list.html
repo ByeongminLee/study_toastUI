@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #play {
+                border: 5px solid block;
+                padding: 5px 30px;
+            }
+            #chartList {
+                width: 150px;
+                height: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h4>차트 종류 선택</h4>
+            <select title="chartList" id="chartList">
+                <option value="lineChart">lineChart</option>
+                <option value="areaChart">areaChart</option>
+                <option value="lineAreaChart">lineAreaChart</option>
+                <option value="barChart">barChart</option>
+                <option value="columnChart">columnChart</option>
+                <option value="bulletChart">bulletChart</option>
+                <option value="boxPlotChart">boxPlotChart</option>
+                <option value="treemapChart">treemapChart</option>
+                <option value="heatmapChart">heatmapChart</option>
+                <option value="scatterChart">scatterChart</option>
+                <option value="lineScatterChart">lineScatterChart</option>
+                <option value="bubbleChart">bubbleChart</option>
+                <option value="pieChart">pieChart</option>
+                <option value="nestedPieChart">nestedPieChart</option>
+                <option value="radarChart">radarChart</option>
+                <option value="radialBarChart">radialBarChart</option>
+                <option value="gaugeChart">gaugeChart</option>
+            </select>
+            <button id="play">play</button>
+        </div>
+
+        <hr />
+
+        <div id="chart"></div>
+
+        <script src="./chart_js/data.js"></script>
+        <script src="./chart_js/options.js"></script>
+        <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
+        <!--<script src="../../node_modules/@toast-ui/chart/dist/toastui-chart.min.js"></script>-->
+        <script>
+            document.querySelector("#play").addEventListener("click", (e) => {
+                document.querySelector("#chart").innerHTML = ""; // 초기화
+
+                // 선택값
+                const effects = document.querySelector("#chartList");
+                const chartListName = chartList[chartList.selectedIndex].value;
+
+                const el = document.getElementById("chart"); // 위치
+                const data = func_data(chartListName); // 데이터
+                const options = func_options(chartListName); // 옵션
+
+                const chart = eval("toastui.Chart." + chartListName + "({ el, data, options })");
+                //원래값 : const chart = "toastui.Chart.chartListName({ el, data, options });
+            });
+        </script>
+    </body>
+</html>

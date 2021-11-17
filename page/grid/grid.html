@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+    </head>
+    <body>
+        <div id="grid"></div>
+        <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+        <script>
+            var Grid = tui.Grid;
+            const gridData = [
+                {
+                    id: "10012",
+                    city: "Seoul",
+                    country: "South Korea",
+                    value: "",
+                },
+                {
+                    id: "10013",
+                    city: "Tokyo",
+                    country: "Japan",
+                    value: "",
+                },
+                {
+                    id: "10014",
+                    city: "London",
+                    country: "England",
+                    value: "",
+                },
+                {
+                    id: "10015",
+                    city: "Ljubljana",
+                    country: "Slovenia",
+                    value: "",
+                },
+                {
+                    id: "10016",
+                    city: "Reykjavik",
+                    country: "Iceland",
+                    value: "",
+                },
+            ];
+            const grid = new Grid({
+                el: document.getElementById("grid"),
+                data: gridData,
+                columns: [
+                    {
+                        header: "ID",
+                        name: "id",
+                    },
+                    {
+                        header: "City",
+                        name: "city",
+                    },
+                    {
+                        header: "Country",
+                        name: "country",
+                    },
+                    {
+                        header: "Value",
+                        name: "value",
+                        editor: "text",
+                    },
+                ],
+            });
+        </script>
+    </body>
+</html>
