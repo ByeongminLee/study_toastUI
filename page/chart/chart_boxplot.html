@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
+    </head>
+    <body>
+        <div id="chart"></div>
+
+        <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
+        <!--<script src="../../node_modules/@toast-ui/chart/dist/toastui-chart.min.js"></script>-->
+        <script>
+            let str = "";
+            const el = document.getElementById("chart");
+            let data = {
+                categories: [],
+                series: [
+                    {
+                        name: "주식차트",
+                        data: [],
+                    },
+                ],
+            };
+            // 1일 부터 30일 까지
+            for (let i = 1; i < 31; i++) {
+                let value = [];
+
+                str = "2022-01-";
+                str += i.toString();
+                data.categories.push(str); // 날짜 추가
+
+                // 랜덤한 값 추가
+                for (let j = 1; j < 6; j++) {
+                    let ram = Math.floor(Math.random() * 1000) + 100 * i; // 랜덤값추가
+                    value.push(ram);
+                    console.log(value, j);
+                }
+                data.series[0].data.push(value);
+            }
+            console.log(str, data.series[0].data[0]);
+
+            const options = {
+                chart: { title: "주식차트", width: 1300, height: 500 },
+                theme: {
+                    series: {
+                        // 마우스 올리기전 테마
+                        colors: ["#EE4266", "#FFD23F"],
+                        barWidth: 20,
+                        barWidthRatios: {
+                            barRatio: 1,
+                            minMaxBarRatio: 0.8,
+                        },
+                        // 마우스 올릴시 테마
+                        hover: {
+                            color: "#96D6ED",
+                            rect: { borderColor: "#00ff00", borderWidth: 2 },
+                            dot: { radius: 6 },
+                            shadowColor: "rgba(0, 0, 0, 0.7)",
+                            shadowOffsetX: 4,
+                            shadowOffsetY: 4,
+                            shadowBlur: 6,
+                            line: {
+                                whisker: {
+                                    lineWidth: 2,
+                                    color: "#00ff00",
+                                },
+                                maximum: {
+                                    lineWidth: 2,
+                                    color: "#00ff00",
+                                },
+                                minimum: {
+                                    lineWidth: 2,
+                                    color: "#00ff00",
+                                },
+                                median: {
+                                    lineWidth: 2,
+                                    color: "#00ff00",
+                                },
+                            },
+                        },
+                    },
+                },
+            };
+
+            const chart = toastui.Chart.boxPlotChart({ el, data, options });
+        </script>
+    </body>
+</html>
